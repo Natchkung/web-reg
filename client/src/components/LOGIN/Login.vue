@@ -107,7 +107,7 @@ export default {
       this.showPassword = !this.showPassword;
     },
   },
-  setup(){
+  created(){
     localStorage.clear()
   }
 };

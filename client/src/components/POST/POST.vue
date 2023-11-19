@@ -57,7 +57,7 @@ export default {
               .then((response) => {
                 if (response.data == "Token Invalid" || response.data == 'No token!') {
                   alert("หมดเวลาการใช้งานกรุณา Login ใหม่")
-                  this.$emit('token-timeout');
+                  location.replace('/login')
                 }
                 else if (response.data == "Already have user data!") {
                   alert("มีข้อมูลอยู่ในระบบแล้ว!!")

@@ -40,7 +40,7 @@ export default {
     created(){
     this.userdata.checkLogin = localStorage.getItem('checkLogin')
     this.userdata.username = localStorage.getItem('username')
-    this.userdata.username = localStorage.getItem('username')
+    this.userdata.role = localStorage.getItem('role')
   }
 }
 </script>

@@ -13,7 +13,6 @@
         </div>
 
         <div class="flex flex-col h-[calc(100vh-3rem)] text-lg mt-10">
-            <!-- {{ userdata.token }} -->
             <div class="flex flex-col">
                 <router-link to="/home">
                     <button class="active">
@@ -26,10 +25,16 @@
                         v-show="textbar || activebar">เข้าสู่ระบบ</span>
                 </button>
             </router-link>
-            <router-link to="/post" v-show="userdata.checkLogin">
+            <router-link to="/post" v-show="userdata.role == 'staff' || userdata.role=='admin'">
                 <button class="btn">
-                    <i class="fa-solid fa-right-to-bracket"></i><span class="text-bar"
+                    <i class="fa-solid fa-envelope-open-text"></i><span class="text-bar"
                         v-show="textbar || activebar">แบบฟอร์ม</span>
+                </button>
+            </router-link>
+            <router-link to="/post" v-show="userdata.role=='admin'">
+                <button class="btn">
+                    <i class="fa-solid fa-bullhorn"></i><span class="text-bar"
+                        v-show="textbar || activebar">แก้ไขประกาศ</span>
                 </button>
             </router-link>
                 <router-link to="/usermanual">
@@ -71,7 +76,7 @@ export default {
     created(){
     this.userdata.checkLogin = localStorage.getItem('checkLogin')
     this.userdata.username = localStorage.getItem('username')
-    this.userdata.username = localStorage.getItem('username')
+    this.userdata.role = localStorage.getItem('role')
   }
 }
 </script>
