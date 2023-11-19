@@ -13,16 +13,23 @@
         </div>
 
         <div class="flex flex-col h-[calc(100vh-3rem)] text-lg mt-10">
+            <!-- {{ userdata.token }} -->
             <div class="flex flex-col">
                 <router-link to="/home">
                     <button class="active">
                         <i class="fa-solid fa-house"></i><span class="text-bar" v-show="textbar || activebar">หน้าแรก</span>
                     </button>
                 </router-link>
-                <router-link to="/login">
+                <router-link to="/login" v-show="!userdata.checkLogin">
                 <button class="btn">
                     <i class="fa-solid fa-right-to-bracket"></i><span class="text-bar"
                         v-show="textbar || activebar">เข้าสู่ระบบ</span>
+                </button>
+            </router-link>
+            <router-link to="/post" v-show="userdata.checkLogin">
+                <button class="btn">
+                    <i class="fa-solid fa-right-to-bracket"></i><span class="text-bar"
+                        v-show="textbar || activebar">แบบฟอร์ม</span>
                 </button>
             </router-link>
                 <router-link to="/usermanual">
@@ -42,19 +49,30 @@ export default {
     name: 'Sidebar',
     props: {
         dataOpenSidebar: Boolean,
+        dataChecklogin: Boolean
     },
     data() {
         return {
             activebar: false,
-            textbar: false
+            textbar: false,
+            userdata: {
+                checkLogin: false,
+                username: null,
+                role: null
+            }
         }
     },
     methods: {
         toggleShowbar() {
             this.activebar = !this.activebar;
             this.$emit('clickHambuger');
-        },
-    }
+        }
+    },
+    created(){
+    this.userdata.checkLogin = localStorage.getItem('checkLogin')
+    this.userdata.username = localStorage.getItem('username')
+    this.userdata.username = localStorage.getItem('username')
+  }
 }
 </script>
 

@@ -1,54 +1,3 @@
-<script>
-import axios from "axios";
-export default {
-  name: "Login",
-  data() {
-    return {
-      showPassword: false,
-      LoginData: {
-        username: null,
-        password: null
-      },
-    };
-  },
-  computed: {
-    buttonLabel() {
-      return this.showPassword ? "Hide" : "Show";
-    },
-  },
-  methods: {
-     async Login() {
-      if (
-        this.LoginData.username &&
-        this.LoginData.password
-      ) {
-        const api = "http://localhost:3000/api/login"
-        await axios.post(api, this.LoginData).then((response)=>{
-          if (response){
-            alert("Login Success");
-            this.$router.push({path: '/page'})
-            localStorage.setItem("authtoken", response.data.token)
-          }
-        }
-        ).catch(function (error) {
-          if (error.response) {
-            console.log(error.response.data);
-            alert("Login Fail")
-          }})
-              
-      } else {
-        alert("กรุณากรอกข้อมูลให้ครบ");
-      }
-    },
-    toggleShow() {
-      this.showPassword = !this.showPassword;
-    },
-  },
-  setup(){
-    localStorage.clear()
-  }
-};
-</script>
 <template>
   <div id="Login">
     <div class="header"><span class="text-2xl">เข้าสู่ระบบ | </span>
@@ -106,6 +55,64 @@ export default {
     </div>
   </div>
 </template>
+<script>
+import axios from "axios";
+export default {
+  name: "Login",
+  data() {
+    return {
+      showPassword: false,
+      LoginData: {
+        username: null,
+        password: null
+      },
+    };
+  },
+  computed: {
+    buttonLabel() {
+      return this.showPassword ? "Hide" : "Show";
+    },
+  },
+  methods: {
+     async Login() {
+      if (
+        this.LoginData.username &&
+        this.LoginData.password
+      ) {
+        const api = "http://localhost:3000/api/login"
+        await axios.post(api, this.LoginData).then((response)=>{
+          if (response){
+            alert("Login Success");
+            // this.$router.push({path: '/home'})
+            localStorage.setItem("authtoken", response.data.token)
+            localStorage.setItem('checkLogin' , true)
+            localStorage.setItem('username' , response.data.payload.user.username)
+            localStorage.setItem('role' , response.data.payload.user.role)
+            // location.push('/home')
+            location.replace('/home')
+            
+          }
+        }
+        ).catch(function (error) {
+          if (error.response) {
+            console.log(error.response.data);
+            alert("Login Fail")
+          }})
+              
+      } else {
+        alert("กรุณากรอกข้อมูลให้ครบ");
+      }
+    },
+    toggleShow() {
+      this.showPassword = !this.showPassword;
+    },
+  },
+  setup(){
+    localStorage.clear()
+  }
+};
+</script>
+
 <style>
 
 body {

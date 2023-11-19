@@ -18,7 +18,8 @@ exports.login = async (req, res) => {
             //@ payload
             var payload = {
                 user: {
-                    username: user.username
+                    username: user.username,
+                    role: user.role
                 }
             }
             //@ Generate
@@ -66,6 +67,21 @@ exports.create_users = async (req, res) => {
         console.log(err)
         res.status(500).send({ "Server Error :": err })
     }
+}
+
+exports.CheckcurrentUser = async (req,res) =>{
+    try{
+        const user = await Users.findOne({username:req.user.username})
+        .select('-password')
+        .exec()
+
+        res.send(user)
+
+    }catch(err){
+        console.log(err)
+        res.status(500).send({ "Server Error :": err })
+    }
+
 }
 
 

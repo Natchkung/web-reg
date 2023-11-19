@@ -3,7 +3,7 @@ import axios from "axios";
 export default {
   name: "Post",
   props: {
-    auth: Boolean,
+    auth: Boolean
   },
   data() {
     return {
@@ -84,7 +84,7 @@ export default {
 
 <template>
   <div class="w-full h-full mt-10">
-    <div class="container w-[80%] h-[700px] bg-[#213550] rounded-lg overflow-hidden m-auto" v-if="auth">
+    <div class="container w-[80%] h-[700px] bg-[#213550] rounded-lg overflow-hidden m-auto">
       <div class="w-full h-[70px] bg-sky-500 text-center text-xl font-bold flex justify-start items-center"><i
           class="fas fa-address-card text-3xl ml-5 mr-3"></i><span>แบบฟอร์มกรอกข้อมูลส่วนตัว</span></div>
       <form class="flex flex-col mt-[70px]" @submit.enter.prevent="SaveData()" method="post"
