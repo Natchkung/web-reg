@@ -1,9 +1,10 @@
 <template>
-  <div v-if="auth">
+  <div class="w-full h-full" v-if="userdata.role == 'admin' && userdata.checkLogin">
     <div v-show="!PageEdit && !PageProfile">
       <div class="w-full h-full flex items-center justify-center overflow-auto ">
         <div class="w-full pt-7 pb-5 m-auto">
-          <TreeTable :value="member" :paginator="true" :rows="6" :rowsPerPageOptions="[6, 12, 18,64,128]" :filters="filters">
+          <TreeTable :value="member" :paginator="true" :rows="6" :rowsPerPageOptions="[6, 12, 18, 64, 128]"
+            :filters="filters">
             <template #header>
               <div class="flex items-center justify-between">
                 <div class="text-xl font-bold text-sky-300">ตารางข้อมูลประวัติทั้งหมด</div>
@@ -46,7 +47,8 @@
               <div class="flex justify-between items-center">
                 <Button icon="pi pi-refresh" label="Reload" severity="warning" class="text-[#f1caba]"
                   @click="refresh()" />
-                <button class="p-2 bg-sky-500 rounded-lg duration-500 hover:text-slate-700" @click="ExportToExcel()">Export to Excel</button>
+                <button class="p-2 bg-sky-500 rounded-lg duration-500 hover:text-slate-700"
+                  @click="ExportToExcel()">Export to Excel</button>
               </div>
             </template>
           </TreeTable>
@@ -68,14 +70,14 @@
 
   </div>
   <div v-else>
-    <div class="w-full h-full text-center mt-[350px]">
-      <h1 class="text-4xl text-[#e72727] font-bold">คุณยังไม่ได้เข้าสู่ระบบ !!</h1>
-      <h1 class="text-lg mt-5">กรุณาคลิกเพื่อเข้าสู่ระบบ</h1>
-      <router-link class-active="active" to="/"><button type="button"
-          class="w-[10%] h-[50px] mt-5 rounded-md bg-sky-500 duration-500 hover:text-black"><i
-            class="fa-solid fa-right-to-bracket mr-3"></i>เข้าสู่ระบบ</button></router-link>
+        <div class="w-full h-full text-center mt-[350px]">
+            <h1 class="text-4xl text-[#e72727] font-bold">คุณไม่สามารถใช้งานหน้านี้ได้ !!</h1>
+            <h1 class="text-lg mt-5">กรุณาคลิกเพื่อกลับไปหน้าหลัก</h1>
+            <router-link to="/home"><button type="button"
+                    class="w-[10%] h-[50px] mt-5 rounded-md bg-sky-500 duration-500 hover:text-black"><i
+                        class="fa-solid fa-right-to-bracket mr-3"></i>หน้าแรก</button></router-link>
+        </div>
     </div>
-  </div>
 </template>
 
 <script>
@@ -89,18 +91,27 @@ export default {
     Profile
   },
   props: {
-    auth: Boolean
+    auth: Boolean,
+    dataUser: []
   },
   data() {
     return {
       member: [],
       filters: {},
       PageEdit: false,
-      PageProfile: false
+      PageProfile: false,
+      userdata: {
+        checkLogin: false,
+        username: null,
+        role: null
+      }
     }
   },
   created() {
     this.refresh()
+    this.userdata.checkLogin = localStorage.getItem('checkLogin')
+    this.userdata.username = localStorage.getItem('username')
+    this.userdata.role = localStorage.getItem('role')
   },
   methods: {
     refresh() {
@@ -115,7 +126,8 @@ export default {
         .then((response) => {
           if (response.data == "Token Invalid" || response.data == 'No token!') {
             alert("หมดเวลาการใช้งานกรุณา Login ใหม่")
-            this.$emit('token-timeout');
+            localStorage.clear()
+            location.replace('/login')
           } else {
             for (let key in response.data) {
               let innerObj = {};
@@ -193,22 +205,22 @@ export default {
           }
         })
     },
-    ExportToExcel(){
+    ExportToExcel() {
       axios
-          .get("http://localhost:3000/api/members/", {
-            responseType: "blob",
-            headers: {
-          'authtoken': localStorage.getItem('authtoken')
-        },
-          })
-          .then(response => {
-            let blob = new Blob([response.data], {
-                type:
-                  "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-              }),
-              url = window.URL.createObjectURL(blob);
-            window.open(url);
-          });
+        .get("http://localhost:3000/api/members/", {
+          responseType: "blob",
+          headers: {
+            'authtoken': localStorage.getItem('authtoken')
+          },
+        })
+        .then(response => {
+          let blob = new Blob([response.data], {
+            type:
+              "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+          }),
+            url = window.URL.createObjectURL(blob);
+          window.open(url);
+        });
     }
   }
 }

@@ -1,8 +1,9 @@
 <template>
     <div class="w-full">
-        <nav class="w-full h-[60px] m-auto bg-[#213550] p-2 flex align-center justify-between rounded-lg my-5">
-      <span class="mt-2 text-lg font-bold pl-5">ระบบสารสนเทศเพื่องานเก็บข้อมูล</span>
+        <nav class="w-full m-auto bg-[#213550] p-3 flex items-center justify-between rounded-lg my-5">
+      <span class="text-lg font-bold pl-5">ระบบสารสนเทศเพื่องานเก็บข้อมูล</span>
       <ul class="flex flex-wrap gap-4 justify-center items-center">
+        <li v-show="userdata.checkLogin">ชื่อผู้ใช้ : {{ userdata.username }}</li>
         <li class="pr-2">
           <router-link to="/login" v-show="!userdata.checkLogin">
           <button

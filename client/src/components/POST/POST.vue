@@ -83,8 +83,12 @@ export default {
 </script>
 
 <template>
-  <div class="w-full h-full mt-10">
-    <div class="container w-[80%] h-[700px] bg-[#213550] rounded-lg overflow-hidden m-auto">
+  <div class="w-full h-full">
+    <div class="header"><span class="text-2xl">แบบฟอร์มกรอกข้อมูลส่วนตัว | </span>
+      <router-link to="/home" class="text-sky-500">หน้าแรก</router-link>
+      <span class="text-zinc-300"> > แบบฟอร์มกรอกข้อมูลส่วนตัว</span>
+    </div>
+    <div class="container w-[65%] bg-[#213550] rounded-lg overflow-hidden m-auto mt-7 pb-10 mb-7">
       <div class="w-full h-[70px] bg-sky-500 text-center text-xl font-bold flex justify-start items-center"><i
           class="fas fa-address-card text-3xl ml-5 mr-3"></i><span>แบบฟอร์มกรอกข้อมูลส่วนตัว</span></div>
       <form class="flex flex-col mt-[70px]" @submit.enter.prevent="SaveData()" method="post"

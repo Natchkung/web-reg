@@ -5,6 +5,8 @@ import NotFound from '../views/NotFound.vue'
 import Master from '../page/layout/master.vue'
 import home from '../components/home.vue'
 import UserManual from '../components/UserManual/UserManual.vue'
+import AnnounceEdit from '../components/AnnounceEdit/AnnounceEdit.vue'
+import ViewEdit from '../components/ViewEdit/ViewEdit.vue'
 const routes = [
       {
         name: "Master",
@@ -31,7 +33,18 @@ const routes = [
                 name: 'Post',
                 path: '/post',
                 component: Post
-            }
+            },
+            {
+                name: 'AnnounceEdit',
+                path: '/announceEdit',
+                component: AnnounceEdit
+            },
+            {
+                name: 'ViewEdit',
+                path: '/viewEdit',
+                component: ViewEdit
+            },
+
 
         ]
       },
