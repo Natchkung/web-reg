@@ -1,0 +1,17 @@
+{
+    "personalID": 1279900273113,
+    "fname": "Nutchanon",
+    "lname": "Sapmeechai",
+    "old": 18,
+    "sex": "ชาย",
+    "height": 175,
+    "weight": 57,
+    "SYSmmHg": 20.5,
+    "DIAmmhg": 20.5,
+    "PULmin": 20.5,
+    "photo": "test.png"
+}
+{
+    "username": "admin",
+    "password": "12345"
+}
