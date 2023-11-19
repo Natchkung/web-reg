@@ -36,12 +36,12 @@ const routes = [
             },
             {
                 name: 'AnnounceEdit',
-                path: '/announceEdit',
+                path: '/announceedit',
                 component: AnnounceEdit
             },
             {
                 name: 'ViewEdit',
-                path: '/viewEdit',
+                path: '/viewedit',
                 component: ViewEdit
             },
 
@@ -88,4 +88,5 @@ const router = createRouter({
     linkActiveClass: "active", // active class for non-exact links.
     linkExactActiveClass: "active" // active class for *exact* links.
 })
+
 export default router

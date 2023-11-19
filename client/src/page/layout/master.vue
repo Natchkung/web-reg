@@ -4,7 +4,7 @@
     <div class="main h-full mr-5" :class="openSidebar == true ? 'sidebar-space-visible' : 'sidebar-space-close'">
       <headerTop />
       <div class="w-full h-[clac(100vh-50px)]">
-        <router-view />
+        <router-view/>
       </div>
     </div>
   </div>

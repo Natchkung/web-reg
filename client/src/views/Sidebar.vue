@@ -26,11 +26,11 @@
                         <i class="fa-solid fa-envelope-open-text"></i><span class="text-bar"
                             v-show="textbar || activebar">แบบฟอร์ม</span>
                     </router-link>
-                    <router-link to="/viewEdit" v-show="userdata.role == 'admin' && userdata.checkLogin" class-active="active" class="hover:text-sky-500 hover:duration-300 p-[10px]" exact @click="refreshViewEdit()">
+                    <router-link to="/viewedit" v-show="userdata.role == 'admin' && userdata.checkLogin" class-active="active" class="hover:text-sky-500 hover:duration-300 p-[10px]" exact @click="refreshViewEdit()">
                         <i class="fa-solid fa-pen-to-square"></i><span class="text-bar"
-                            v-show="textbar || activebar">แก้ไขข้อมูล</span>
+                            v-show="textbar || activebar">แก้ไขข้อมูลสมาชิก</span>
                     </router-link>
-                    <router-link to="/announceEdit" v-show="userdata.role == 'admin' && userdata.checkLogin" class-active="active" class="hover:text-sky-500 hover:duration-300 p-[10px]" exact>
+                    <router-link to="/announceedit" v-show="userdata.role == 'admin' && userdata.checkLogin" class-active="active" class="hover:text-sky-500 hover:duration-300 p-[10px]" exact>
                         <i class="fa-solid fa-bullhorn"></i><span class="text-bar"
                             v-show="textbar || activebar">แก้ไขประกาศ</span>
                     </router-link>
@@ -68,7 +68,9 @@ export default {
             this.$emit('clickHambuger');
         },
         refreshViewEdit(){
-            location.replace('/viewedit')
+            if(location.pathname == '/registrar/viewedit' || location.pathname == '/registrar/viewEdit' ){
+                location.replace('/viewedit')
+            }
         }
     },
     created() {

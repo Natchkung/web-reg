@@ -1,5 +1,9 @@
 <template>
   <div class="w-full h-full" v-if="userdata.role == 'admin' && userdata.checkLogin">
+    <div class="header"><span class="text-2xl">แก้ไขข้อมูลสมาชิก | </span>
+            <router-link to="/home" class="text-sky-500">หน้าแรก</router-link>
+            <span class="text-zinc-300"> > แก้ไขข้อมูลสมาชิก</span>
+        </div>
     <div v-show="!PageEdit && !PageProfile">
       <div class="w-full h-full flex items-center justify-center overflow-auto ">
         <div class="w-full pt-7 pb-5 m-auto">
