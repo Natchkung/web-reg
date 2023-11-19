@@ -72,7 +72,7 @@ const routes = [
 const router = createRouter({
     history: createWebHistory('/registrar'),
     routes,
-    // linkActiveClass: "hear-active", // active class for non-exact links.
-    // linkExactActiveClass: "hear-active" // active class for *exact* links.
+    linkActiveClass: "active", // active class for non-exact links.
+    linkExactActiveClass: "active" // active class for *exact* links.
 })
 export default router
