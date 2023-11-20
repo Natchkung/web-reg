@@ -1,4 +1,5 @@
-const Members = require('../models/Members.server.model')
+const Members = require('../models/Members.server.model') //Schema Model members
+const Users = require('../models/Users.server.model') //Schema Model USers
 const fs = require("fs")
 
 
@@ -15,6 +16,7 @@ exports.list_all_dbs = async (req, res) => {
 
 exports.delete_all_dbs = async (req, res) => {
     try {
+        // @members
         await Members.deleteMany();
         const path = require("path");
 
@@ -29,6 +31,14 @@ exports.delete_all_dbs = async (req, res) => {
                 });
             }
         });
+
+        // @delete users
+        const user = await Users.find({role:"member"})
+        if (user){
+            await Users.deleteMany({role:"member"});
+        }
+
+
         res.status(200).send({
             "status": "deleted all,",
         });
@@ -58,10 +68,33 @@ exports.create_a_db = async (req, res) => {
         //@next
         members = new Members(data)
         await members.save()
+
+        // @create user in Users
+        const bcrypt = require('bcrypt'); // @import เข้ารหัส
+
+        var user = await Users.findOne({ personalID })
+
+        // @ Check User
+        if (user) {
+            return res.send("Existing User").status(400)
+        }
+        //
+        //@ Encrypt
+        const salt = await bcrypt.genSalt(10)
+        const password = await bcrypt.hash(personalID, salt)
+
+        user = new Users({
+            "username": personalID,
+            "password": password
+        })
+        //
+        await user.save()
+
         res.status(201).send({
             "status": "created",
             "payload": data
         });
+
     } catch (err) {
         console.log(err)
         res.status(500).send({ "Server Error :": err })
@@ -170,6 +203,7 @@ exports.delete_a_db = async (req, res) => {
         // @ check data user
         if (members) {
             await Members.deleteOne({ 'personalID': personalID });
+            await Users.deleteOne({"username": personalID, "role": "member"})
             if (members?.photo) {
                 await fs.unlink('./upload_image/' + members.photo, (err) => {
                     if (err) {
