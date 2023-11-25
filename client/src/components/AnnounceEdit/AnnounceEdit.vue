@@ -35,7 +35,13 @@
                 </div>
             </div>
         </div>
+        <button class="w-[70px] h-[70px] bg-[#1e3658] fixed bottom-10 right-10 rounded-full flex items-center justify-center">
+            <i class="fa-solid fa-pen-to-square text-sky-400 font-bold text-2xl hover:text-white duration-300"></i>
+        </button>
+
     </div>
+
+
     <div v-else>
         <div class="w-full h-full text-center mt-[350px]">
             <h1 class="text-4xl text-[#e72727] font-bold">คุณไม่สามารถใช้งานหน้านี้ได้ !!</h1>

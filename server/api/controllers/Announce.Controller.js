@@ -43,3 +43,29 @@ exports.GetAnnounce = async (req, res) => {
         res.status(500).send({ "Server Error :": err })
     }
 }
+
+exports.DeleteAnnounce = async (req, res) => {
+    try {
+        const { id } = req.params
+        const announce = await Announce.findByIdAndDelete(id)
+        res.json(announce);
+
+    } catch (err) {
+        console.log(err)
+        res.status(500).send({ "Server Error :": err })
+    }
+}
+
+exports.UpdateAnnounce = async (req, res) => {
+    try {
+        const { id } = req.params
+        const data = req.body
+        res.send("UpdateAnnounce")
+        
+
+    } catch (err) {
+        console.log(err)
+        res.status(500).send({ "Server Error :": err })
+    }
+
+}

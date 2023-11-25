@@ -39,6 +39,9 @@
                             v-show="textbar || activebar">คู่มือการใช้งาน</span>
                     </router-link>
             </div>
+            <div class="footer absolute bottom-3 text-sm left-1/2 transform -translate-x-1/2 w-full" v-show="textbar || activebar">
+                    <img src="../assets/logo.png" alt="" class="w-[40px] h-[40px] object-cover m-auto">Copyright © 2023 <br><a href="https://www.facebook.com/Natx0082/" target="_blank" class="font-semibold hover:text-sky-500 duration-300">Nc Developer</a>. All rights Reserved.
+            </div>
         </div>
 
     </div>
