@@ -26,9 +26,11 @@ exports.delete_all_dbs = async (req, res) => {
             if (err) throw err;
 
             for (const file of files) {
-                fs.unlink(path.join(directory, file), (err) => {
-                    if (err) throw err;
-                });
+                if (file != 'noimage.jpg'){
+                    fs.unlink(path.join(directory, file), (err) => {
+                        if (err) throw err;
+                    });
+                }
             }
         });
 
@@ -205,14 +207,16 @@ exports.delete_a_db = async (req, res) => {
             await Members.deleteOne({ 'personalID': personalID });
             await Users.deleteOne({"username": personalID, "role": "member"})
             if (members?.photo) {
-                await fs.unlink('./upload_image/' + members.photo, (err) => {
-                    if (err) {
-                        console.log(err)
-                    }
-                    else {
-                        console.log("deleted success!!")
-                    }
-                })
+                if (members.photo != "noimage.jpg") {
+                    await fs.unlink('./upload_image/' + members.photo, (err) => {
+                        if (err) {
+                            console.log(err)
+                        }
+                        else {
+                            console.log("deleted success!!")
+                        }
+                    })
+                }
             }
             res.status(200).send({
                 "status": "ok",
