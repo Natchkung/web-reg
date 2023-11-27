@@ -3,8 +3,11 @@ const Announce = require('../models/Announce.server.model') //Schema Model
 
 exports.Createannounce = async (req, res) => {
     try {
+        if(req.user.role !== "admin"){
+            return res.status(400).send("Not admin")
+        }
+        
         const data = req.body
-
         announce = new Announce(data)
         await announce.save()
         res.status(201).send({
@@ -40,6 +43,10 @@ exports.GetAnnounce = async (req, res) => {
 
 exports.Get_a_Announce = async (req, res) => {
     try {
+        if(req.user.role !== "admin"){
+            return res.status(400).send("Not admin")
+        }
+
         const { id } = req.params
         const announce = await Announce.findOne({ '_id': id})
         res.json(announce);
@@ -52,6 +59,10 @@ exports.Get_a_Announce = async (req, res) => {
 
 exports.DeleteAnnounce = async (req, res) => {
     try {
+        if(req.user.role !== "admin"){
+            return res.status(400).send("Not admin")
+        }
+
         const { id } = req.params
         const announce = await Announce.findByIdAndDelete(id)
         res.json(announce);
@@ -64,6 +75,10 @@ exports.DeleteAnnounce = async (req, res) => {
 
 exports.UpdateAnnounce = async (req, res) => {
     try {
+        if(req.user.role !== "admin"){
+            return res.status(400).send("Not admin")
+        }
+        
         const { id } = req.params
         const data = req.body
         var announce = await Announce.findOne({ _id: id })

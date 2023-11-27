@@ -6,6 +6,10 @@ const fs = require("fs")
 // @ Begin Members -- 
 exports.list_all_dbs = async (req, res) => {
     try {
+        if(req.user.role !== "admin"){
+            return res.status(400).send("Not admin")
+        }
+
         const members = await Members.find({});
         res.json(members);
     } catch (error) {
@@ -16,6 +20,10 @@ exports.list_all_dbs = async (req, res) => {
 
 exports.delete_all_dbs = async (req, res) => {
     try {
+        if(req.user.role !== "admin"){
+            return res.status(400).send("Not admin")
+        }
+
         // @members
         await Members.deleteMany();
         const path = require("path");
@@ -54,6 +62,10 @@ exports.delete_all_dbs = async (req, res) => {
 
 exports.create_a_db = async (req, res) => {
     try {
+        if(req.user.role !== "admin"){
+            return res.status(400).send("Not admin")
+        }
+
         var data = req.body
         const { personalID } = data
         var members = await Members.findOne({ personalID })
@@ -105,6 +117,10 @@ exports.create_a_db = async (req, res) => {
 
 exports.read_a_db = async (req, res) => {
     try {
+        if(req.user.role !== "admin"){
+            return res.status(400).send("Not admin")
+        }
+
         const personalID = parseInt(req.params.personalID);
         const user = await Members.findOne({ "personalID": personalID });
         res.status(200).send({
@@ -121,6 +137,10 @@ exports.read_a_db = async (req, res) => {
 
 exports.update_a_db = async (req, res) => {
     try {
+        if(req.user.role !== "admin"){
+            return res.status(400).send("Not admin")
+        }
+
         var user = req.body;
         const { personalID } = user
         const paramsPersonalID = parseInt(req.params.personalID);
@@ -199,6 +219,11 @@ exports.update_a_db = async (req, res) => {
 
 exports.delete_a_db = async (req, res) => {
     try {
+        if(req.user.role !== "admin"){
+            return res.status(400).send("Not admin")
+        }
+        
+        
         const personalID = parseInt(req.params.personalID);
         var members = await Members.findOne({ personalID })
 

@@ -6,7 +6,7 @@ const {
     GetAnnounce,
     DeleteAnnounce,
     UpdateAnnounce,
-    Get_a_Announce
+    Get_a_Announce,
 } = require('../controllers/Announce.Controller')
 
 const {auth} = require("../Middleware/auth")
