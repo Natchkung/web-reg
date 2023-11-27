@@ -4,12 +4,6 @@ const Announce = require('../models/Announce.server.model') //Schema Model
 exports.Createannounce = async (req, res) => {
     try {
         const data = req.body
-        const { title } = data
-        var announce = await Announce.findOne({ title })
-
-        if (announce) {
-            return res.status(400).send("This announcement already has a name.")
-        }
 
         announce = new Announce(data)
         await announce.save()
@@ -44,6 +38,18 @@ exports.GetAnnounce = async (req, res) => {
     }
 }
 
+exports.Get_a_Announce = async (req, res) => {
+    try {
+        const { id } = req.params
+        const announce = await Announce.findOne({ '_id': id})
+        res.json(announce);
+
+    } catch (err) {
+        console.log(err)
+        res.status(500).send({ "Server Error :": err })
+    }
+}
+
 exports.DeleteAnnounce = async (req, res) => {
     try {
         const { id } = req.params
@@ -60,9 +66,15 @@ exports.UpdateAnnounce = async (req, res) => {
     try {
         const { id } = req.params
         const data = req.body
-        res.send("UpdateAnnounce")
+        var announce = await Announce.findOne({ _id: id })
+    
+        if(announce){
+            await Announce.updateOne({ _id: id }, data)
+            res.status(200).json(announce);
+        }else{
+            res.status(400).send("Not found")
+        }
         
-
     } catch (err) {
         console.log(err)
         res.status(500).send({ "Server Error :": err })

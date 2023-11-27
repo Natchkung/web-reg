@@ -5,7 +5,8 @@ const {
     Createannounce,
     GetAnnounce,
     DeleteAnnounce,
-    UpdateAnnounce
+    UpdateAnnounce,
+    Get_a_Announce
 } = require('../controllers/Announce.Controller')
 
 const {auth} = require("../Middleware/auth")
@@ -13,6 +14,7 @@ const {auth} = require("../Middleware/auth")
 
 
 router.post('/announce', auth , Createannounce)
+router.get('/announce/:id', auth , Get_a_Announce)
 router.put('/announce/:id', auth , UpdateAnnounce)
 router.delete('/announce/:id', auth , DeleteAnnounce)
 router.get('/announce', GetAnnounce)
