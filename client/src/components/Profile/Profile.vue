@@ -112,29 +112,41 @@ export default {
     data(){
         return{
             members: [],
+            personalID: 0
         }
 
     },
-    created(){
-         axios.get(`http://localhost:3000/api/members/${this.$route.query.personalID}`, {
-        headers: {
-          'authtoken': localStorage.getItem('authtoken')
-        },
-      })
-        .then((response) => {
-          if (response.data == "Token Invalid" || response.data == 'No token!') {
-            alert("หมดเวลาการใช้งานกรุณา Login ใหม่")
-            localStorage.clear()
-            location.replace('/login')
-          } else {
-            this.members = response.data.user
-          }
-
-        }).catch(function (error) {
-          if (error.response) {
-            console.log(error.response.data);
-          }
+    methods:{
+        getData(){
+            if(this.$route.query.personalID){
+                this.personalID = this.$route.query.personalID
+            }else{
+                this.personalID = localStorage.getItem('username')
+            }
+            axios.get(`http://localhost:3000/api/members/${this.personalID}`, {
+            headers: {
+            'authtoken': localStorage.getItem('authtoken')
+            },
         })
+            .then((response) => {
+            if (response.data == "Token Invalid" || response.data == 'No token!') {
+                alert("หมดเวลาการใช้งานกรุณา Login ใหม่")
+                localStorage.clear()
+                location.replace('/login')
+            } else {
+                this.members = response.data.user
+            }
+
+            }).catch(function (error) {
+            if (error.response) {
+                console.log(error.response.data);
+            }
+            })
+            }
+    },
+    created(){
+        this.getData();
+
     },
 }
 </script>

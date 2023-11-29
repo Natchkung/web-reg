@@ -117,10 +117,6 @@ exports.create_a_db = async (req, res) => {
 
 exports.read_a_db = async (req, res) => {
     try {
-        // if(req.user.role !== "admin"){
-        //     return res.status(400).send("Not admin")
-        // }
-        console.log(req.user.username)
         const personalID = parseInt(req.params.personalID);
         if ( req.user.username == personalID && req.user.role == "member" || req.user.role == "admin"){
         const user = await Members.findOne({ "personalID": personalID });

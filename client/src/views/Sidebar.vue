@@ -30,6 +30,10 @@
                         <i class="fa-solid fa-pen-to-square"></i><span class="text-bar"
                             v-show="textbar || activebar">แก้ไขข้อมูลสมาชิก</span>
                     </router-link>
+                    <router-link to="/profile" v-show="userdata.role == 'member' && userdata.checkLogin" class-active="active" class="hover:text-sky-500 hover:duration-300 p-[10px]" exact>
+                        <i class="fa-solid fa-pen-to-square"></i><span class="text-bar"
+                            v-show="textbar || activebar">โปรไฟล์</span>
+                    </router-link>
                     <router-link to="/announceedit" v-show="userdata.role == 'admin' && userdata.checkLogin" class-active="active" class="hover:text-sky-500 hover:duration-300 p-[10px]" exact>
                         <i class="fa-solid fa-bullhorn"></i><span class="text-bar"
                             v-show="textbar || activebar">แก้ไขประกาศ</span>
