@@ -7,19 +7,6 @@
         <div class="w-full bg-[#19273a] rounded-lg mt-5">
             <div class="announce w-[90%] h-full m-auto py-5">
                 <div class="announce-item flex justify-between items-center" v-for="item in announce" :key="item">
-                    <!-- <div class="flex flex-wrap gap-2 w-[90%] flex-col">
-                        <input type="text" v-model="item.title" class="w-auto bg-transparent text-sky-500">
-                        <input type="text" v-model="item.announcelink" class="w-auto bg-transparent text-red-100">
-                        <input type="text" v-model="item.detail" class="w-auto bg-transparent text-red-100">
-                        <div>
-                            <span class="font-bold text-red-200">ประกาศโดย </span><input type="text"
-                                v-model="item.announceby" class="w-auto bg-transparent text-red-100">
-                        </div>
-                        <div>
-                            <span class="font-bold text-violet-300">วันที่ประกาศ </span><input type="text"
-                                v-model="item.announcetimes" class="w-auto bg-transparent text-red-100">
-                        </div>
-                    </div> -->
                     <div>
                         <h4><a :href="item.announcelink" target="_blank"> {{item.title}}</a> </h4>
                         <ul>
