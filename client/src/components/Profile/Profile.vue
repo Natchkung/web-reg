@@ -1,5 +1,5 @@
 <template>
-    <div class="w-full m-auto mt-7">
+    <div class="w-full m-auto mt-7" v-if="userdata.checkLogin">
         <div class="w-full h-[650px] flex flex-wrap lg:gap-7">
             <div class="w-[30%] bg-[#102e49] rounded-lg flex flex-col items-center">
                 <div class="w-[150px] h-[150px] bg-sky-50 rounded-full overflow-hidden mt-5">
@@ -102,6 +102,15 @@
            </div>
         </div>
     </div>
+    <div v-else>
+        <div class="w-full h-full text-center mt-[350px]">
+            <h1 class="text-4xl text-[#e72727] font-bold">คุณไม่สามารถใช้งานหน้านี้ได้ !!</h1>
+            <h1 class="text-lg mt-5">กรุณาคลิกเพื่อกลับไปหน้าหลัก</h1>
+            <router-link to="/home"><button type="button"
+                    class="w-[10%] h-[50px] mt-5 rounded-md bg-sky-500 duration-500 hover:text-black"><i
+                        class="fa-solid fa-right-to-bracket mr-3"></i>หน้าแรก</button></router-link>
+        </div>
+    </div>
   
 </template>
 
@@ -112,7 +121,12 @@ export default {
     data(){
         return{
             members: [],
-            personalID: 0
+            personalID: 0,
+            userdata: {
+                checkLogin: false,
+                username: null,
+                role: null
+            }
         }
 
     },
@@ -146,6 +160,9 @@ export default {
     },
     created(){
         this.getData();
+        this.userdata.checkLogin = localStorage.getItem('checkLogin')
+        this.userdata.username = localStorage.getItem('username')
+        this.userdata.role = localStorage.getItem('role')
 
     },
 }

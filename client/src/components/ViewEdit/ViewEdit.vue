@@ -64,14 +64,6 @@
       <EDITPAGE :members="member" />
     </div>
 
-    <!-- @ProfilePage -->
-    <!-- <div v-if="PageProfile">
-      <Profile :members="member" />
-    </div> -->
-
-
-
-
   </div>
   <div v-else>
         <div class="w-full h-full text-center mt-[350px]">
