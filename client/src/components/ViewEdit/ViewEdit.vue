@@ -4,7 +4,7 @@
             <router-link to="/home" class="text-sky-500">หน้าแรก</router-link>
             <span class="text-zinc-300"> > แก้ไขข้อมูลสมาชิก</span>
         </div>
-    <div v-show="!PageEdit && !PageProfile">
+    <div v-show="!PageEdit">
       <div class="w-full h-full flex items-center justify-center overflow-auto ">
         <div class="w-full pt-7 pb-5 m-auto">
           <TreeTable :value="member" :paginator="true" :rows="6" :rowsPerPageOptions="[6, 12, 18, 64, 128]"
@@ -61,13 +61,13 @@
     </div>
     <!-- @showEdit -->
     <div v-if="PageEdit">
-      <EditPage :members="member" />
+      <EDITPAGE :members="member" />
     </div>
 
     <!-- @ProfilePage -->
-    <div v-if="PageProfile">
+    <!-- <div v-if="PageProfile">
       <Profile :members="member" />
-    </div>
+    </div> -->
 
 
 
@@ -85,14 +85,12 @@
 </template>
 
 <script>
-import EditPage from './Editpage.vue'
-import Profile from '../Profile/Profile.vue'
+import EDITPAGE from './EditPage.vue';
 import axios from 'axios';
 export default {
   name: 'ViewEdit',
   components: {
-    EditPage,
-    Profile
+    EDITPAGE,
   },
   props: {
     auth: Boolean,
@@ -103,7 +101,6 @@ export default {
       member: [],
       filters: {},
       PageEdit: false,
-      PageProfile: false,
       userdata: {
         checkLogin: false,
         username: null,
@@ -121,7 +118,6 @@ export default {
     refresh() {
       this.member = []
       this.PageEdit = false
-      this.PageProfile = false
       axios.get("http://localhost:3000/api/members/", {
         headers: {
           'authtoken': localStorage.getItem('authtoken')
@@ -176,7 +172,8 @@ export default {
         .then((response) => {
           if (response.data == "Token Invalid" || response.data == 'No token!') {
             alert("หมดเวลาการใช้งานกรุณา Login ใหม่")
-            this.$emit('token-timeout');
+            localStorage.clear()
+            location.replace('/login')
           } else {
             this.member = response.data.user
             this.PageEdit = true
@@ -189,25 +186,7 @@ export default {
         })
     },
     Profiledata(event) {
-      axios.get(`http://localhost:3000/api/members/${event.personalID}`, {
-        headers: {
-          'authtoken': localStorage.getItem('authtoken')
-        },
-      })
-        .then((response) => {
-          if (response.data == "Token Invalid" || response.data == 'No token!') {
-            alert("หมดเวลาการใช้งานกรุณา Login ใหม่")
-            this.$emit('token-timeout');
-          } else {
-            this.member = response.data.user
-            this.PageProfile = true
-          }
-
-        }).catch(function (error) {
-          if (error.response) {
-            console.log(error.response.data);
-          }
-        })
+      this.$router.push({ name: "Profile" ,query: {personalID: event.personalID} })
     },
     ExportToExcel() {
       axios

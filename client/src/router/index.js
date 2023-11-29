@@ -7,6 +7,7 @@ import home from '../components/home.vue'
 import UserManual from '../components/UserManual/UserManual.vue'
 import AnnounceEdit from '../components/AnnounceEdit/AnnounceEdit.vue'
 import ViewEdit from '../components/ViewEdit/ViewEdit.vue'
+import Profile from '../components/Profile/Profile.vue'
 const routes = [
       {
         name: "Master",
@@ -44,6 +45,11 @@ const routes = [
                 path: '/viewedit',
                 component: ViewEdit
             },
+            {
+                name: 'Profile',
+                path: '/profile',
+                component: Profile
+            }
 
 
         ]
