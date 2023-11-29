@@ -89,7 +89,7 @@
                             <span>{{ members.PULmin }}</span>
                         </div>
                         <div class="tite-detail">
-                            <span>{{ members.createdAt }}</span>
+                            <span>{{ members.time }}</span>
                         </div>
                     </div>
                 </div> 

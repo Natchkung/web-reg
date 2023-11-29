@@ -1,6 +1,13 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+getNowDate = function(){
+    let today = new Date();
+    let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate()
+    let time = today.getHours() + ":" + today.getMinutes();
+    return date+' '+time;
+}
+
 const membersSchema = new Schema(
     {
         personalID: Number,
@@ -16,7 +23,11 @@ const membersSchema = new Schema(
         photo: {
             type: String,
             default: 'noimage.jpg'
-        }
+        },
+        time: {
+            type: String,
+            default: getNowDate()
+        },
     },
     {versionKey: false,timestamps:true}
 );
