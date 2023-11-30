@@ -85,7 +85,7 @@ exports.create_users = async (req, res) => {
 exports.RequestSecretcode = async (req, res) => {
   const nodemailer = require("nodemailer");
   const { email } = req.body;
-  const secretCode = (Math.random() + 1).toString(36).substring(7);
+  global.secretCode = (Math.random() + 1).toString(36).substring(7);
   // @secret code send to email
   const transporter = nodemailer.createTransport({
     service: "gmail",
@@ -116,7 +116,7 @@ exports.RequestSecretcode = async (req, res) => {
 };
 
 exports.ForgotPassword = async (req, res) => {
-  //ยังไม่เสร็จ
+  //ยังไม่เสร็จ มันเอ๋อ
   try {
     const data = req.body;
     var forgetpassword = await Users.findOne({ username: data.username });
