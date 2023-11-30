@@ -69,13 +69,24 @@ exports.create_users = async (req, res) => {
     }
 }
 
-exports.CheckcurrentUser = async (req,res) =>{
-    try{
-        const user = await Users.findOne({username:req.user.username})
-        .select('-password')
-        .exec()
+// exports.CheckcurrentUser = async (req,res) =>{
+//     try{
+//         const user = await Users.findOne({username:req.user.username})
+//         .select('-password')
+//         .exec()
 
-        res.send(user)
+//         res.send(user)
+
+//     }catch(err){
+//         console.log(err)
+//         res.status(500).send({ "Server Error :": err })
+//     }
+
+// }
+
+exports.ForgotPassword = async (req,res) =>{
+    try{
+        res.send('ForgotPassword')
 
     }catch(err){
         console.log(err)
@@ -83,5 +94,6 @@ exports.CheckcurrentUser = async (req,res) =>{
     }
 
 }
+
 
 
