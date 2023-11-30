@@ -83,10 +83,52 @@ exports.create_users = async (req, res) => {
 //     }
 
 // }
+const nodemailer = require('nodemailer');
 
 exports.ForgotPassword = async (req,res) =>{
     try{
-        res.send('ForgotPassword')
+        // @secret code send to email
+        // const transporter = nodemailer.createTransport({
+        //     host: "smtp.forwardemail.net",
+        //     port: 465,
+        //     secure: true,
+        //     auth: {
+        //       // ตรงส่วนนี้แทนด้วย user pass ของเราเลยนะครับ
+        //       user: "bernadette.padberg@ethereal.email",
+        //       pass: "td3xJj77RSMwT4PSEE",
+        //     },
+        //   });
+        
+        //   const msg = {
+        //     from: '"Nc-Developer 👻" <@nc-developer.dev>', // อีเมล์ของผู้ส่ง
+        //     to: "bernadette.padberg@ethereal.email", // อีเมล์ผู้รับ
+        //     subject: "Nc-Developer ✔", // หัวข้อของเมล์
+        //     text: "Hello world?", // ส่วนของเนื้อหา
+        //     html: "<b>Hello world?</b>",
+        //   }
+        //     const info = await transporter.sendMail(msg);
+        
+        //     console.log("Message sent: %s", info);
+        //     res.send("Email Sent!!");
+          ///
+
+          const secretCode = 'natcncode';
+          const data = req.body;
+          var forgetpassword = await Users.findOne({username:data.username})
+            if(!forgetpassword){
+                return res.status(400).send("User not found!!")
+            }
+            // res.status(200).json(forgetpassword);
+            if (data.secretCode === secretCode){
+                const salt = await bcrypt.genSalt(10)
+                forgetpassword.password = await bcrypt.hash(data.password, salt)
+                await forgetpassword.save()
+                res.status(200).send("Password Changed!!");
+            }else{
+                res.status(400).send("Secrect code not match")
+            }
+
+
 
     }catch(err){
         console.log(err)
