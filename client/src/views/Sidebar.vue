@@ -76,9 +76,7 @@ export default {
         },
         refreshViewEdit(){
             if(location.pathname == '/viewedit' || location.pathname == '/viewEdit' ){
-                // location.replace('/viewedit')
-                // this.$router.replace({ path: '/viewedit' })
-                this.$router.go()
+                location.replace('/viewedit')
             }
         }
     },

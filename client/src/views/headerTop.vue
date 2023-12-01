@@ -35,7 +35,7 @@ export default {
     methods:{
       refreshpage(){
         localStorage.clear()
-        this.$router.replace('/home')
+        location.replace('/login')
         // this.$router.go()
       }
     },

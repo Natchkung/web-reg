@@ -136,8 +136,7 @@ export default {
                 .then((response) => {
                     if (response) {
                         alert("อัพเดตข้อมูลเสร็จสิ้น!!")
-                        // location.reload();
-                        this.$router.go()
+                        location.reload();
                     }
                 }).catch(function (error) {
                     if (error.response) {

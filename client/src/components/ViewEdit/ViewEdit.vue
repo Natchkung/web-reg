@@ -119,8 +119,7 @@ export default {
           if (response.data == "Token Invalid" || response.data == 'No token!') {
             alert("หมดเวลาการใช้งานกรุณา Login ใหม่")
             localStorage.clear()
-            // location.replace('/login')
-            this.$router.replace({ path: '/login' })
+            location.replace('/login')
           } else {
             for (let key in response.data) {
               let innerObj = {};
@@ -166,8 +165,7 @@ export default {
           if (response.data == "Token Invalid" || response.data == 'No token!') {
             alert("หมดเวลาการใช้งานกรุณา Login ใหม่")
             localStorage.clear()
-            // location.replace('/login')
-            this.$router.replace({ path: '/login' })
+            location.replace('/login')
           } else {
             this.member = response.data.user
             this.PageEdit = true
