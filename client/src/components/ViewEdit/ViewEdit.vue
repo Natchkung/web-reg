@@ -120,7 +120,6 @@ export default {
             alert("หมดเวลาการใช้งานกรุณา Login ใหม่")
             localStorage.clear()
             // location.replace('/login')
-            localStorage.clear()
             this.$router.replace({ path: '/login' })
           } else {
             for (let key in response.data) {
@@ -168,7 +167,6 @@ export default {
             alert("หมดเวลาการใช้งานกรุณา Login ใหม่")
             localStorage.clear()
             // location.replace('/login')
-            localStorage.clear()
             this.$router.replace({ path: '/login' })
           } else {
             this.member = response.data.user

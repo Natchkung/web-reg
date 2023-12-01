@@ -147,7 +147,6 @@ export default {
                 alert("หมดเวลาการใช้งานกรุณา Login ใหม่")
                 localStorage.clear()
                 // location.replace('/login')
-                localStorage.clear()
                 this.$router.replace({ path: '/login' })
             } else {
                 this.members = response.data.user

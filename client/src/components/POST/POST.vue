@@ -58,7 +58,6 @@ export default {
                 if (response.data == "Token Invalid" || response.data == 'No token!') {
                   alert("หมดเวลาการใช้งานกรุณา Login ใหม่")
                   // location.replace('/login')
-                  localStorage.clear()
                   this.$router.replace({ path: '/login' })
                 }
                 else if (response.data == "Already have user data!") {
