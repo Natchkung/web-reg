@@ -89,7 +89,7 @@ const routes = [
     //   }
 ]
 const router = createRouter({
-    history: createWebHistory('/registrar'),
+    history: createWebHistory('/'),
     routes,
     linkActiveClass: "active", // active class for non-exact links.
     linkExactActiveClass: "active" // active class for *exact* links.
