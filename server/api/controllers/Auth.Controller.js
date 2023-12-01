@@ -116,7 +116,7 @@ exports.RequestSecretcode = async (req, res) => {
 };
 
 exports.ForgotPassword = async (req, res) => {
-  //ยังไม่เสร็จ มันเอ๋อ
+  //ยังไม่เสร็จ มันเอ๋อ ใช้ได้แค่ 1 ครั้ง
   try {
     const data = req.body;
     var forgetpassword = await Users.findOne({ username: data.username });
@@ -130,7 +130,7 @@ exports.ForgotPassword = async (req, res) => {
       await forgetpassword.save();
       res.status(200).send("Password Changed!!");
     } else {
-      res.status(400).send("Secrect code not match");
+      res.status(400).send("Secret code not match");
     }
   } catch (err) {
     console.log(err);

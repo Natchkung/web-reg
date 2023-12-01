@@ -181,21 +181,22 @@ export default {
       this.$router.push({ name: "Profile" ,query: {personalID: event.personalID} })
     },
     ExportToExcel() {
-      axios
-        .get("http://localhost:3000/api/members/", {
-          responseType: "blob",
-          headers: {
-            'authtoken': localStorage.getItem('authtoken')
-          },
-        })
-        .then(response => {
-          let blob = new Blob([response.data], {
-            type:
-              "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-          }),
-            url = window.URL.createObjectURL(blob);
-          window.open(url);
-        });
+      // axios
+      //   .get("http://localhost:3000/api/members/", {
+      //     responseType: "blob",
+      //     headers: {
+      //       'authtoken': localStorage.getItem('authtoken')
+      //     },
+      //   })
+      //   .then(response => {
+      //     let blob = new Blob([response.data], {
+      //       type:
+      //         "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      //     }),
+      //       url = window.URL.createObjectURL(blob);
+      //     window.open(url);
+      //   });
+      alert("กำลังปรับปรุงระบบ")
     }
   }
 }
