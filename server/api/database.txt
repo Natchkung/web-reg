@@ -16,3 +16,11 @@
     "password": "12345",
     "role": "admin"
 }
+{
+    "email": "natchnonsabmeechai1@gmail.com"
+}
+{
+    "username": 1279900273113,
+    "newpassword": "test1",
+    "secretCode": "secretCode"
+}

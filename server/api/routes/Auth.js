@@ -8,12 +8,12 @@ const {
     RequestSecretcode
 } = require('../controllers/Auth.Controller')
 
-const {auth} = require("../Middleware/auth")
+const {SCRERTCODE} = require("../Middleware/SecretCode")
 
 //http://localhost:5000/api/product
 router.post('/login', login)
 // router.post('/login/create/create-account_nicky-nutchkung', create_users)
-router.post('/Forgot-Password', ForgotPassword)
+router.post('/Forgot-Password', SCRERTCODE,ForgotPassword)
 router.post('/Request-Secretcode', RequestSecretcode)
 
 

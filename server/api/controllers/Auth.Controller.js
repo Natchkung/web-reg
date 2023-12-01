@@ -85,7 +85,7 @@ exports.create_users = async (req, res) => {
 exports.RequestSecretcode = async (req, res) => {
   const nodemailer = require("nodemailer");
   const { email } = req.body;
-  global.secretCode = (Math.random() + 1).toString(36).substring(7);
+  secretCode = (Math.random() + 1).toString(36).substring(7);
   // @secret code send to email
   const transporter = nodemailer.createTransport({
     service: "gmail",
@@ -109,24 +109,34 @@ exports.RequestSecretcode = async (req, res) => {
   };
 
   const message = await transporter.sendMail(msg);
+  //@ playload 
+  var payload = {
+    user:{
+      secretCode:secretCode,
+      email:email
+    }
+  }
   if (message){
-    res.status(200).send("Send SecretCode Success!!");
+     //@ Generate
+      jwt.sign(payload, process.env.UNKNOW_SCRERTCODE, { expiresIn: "5m" }, (err, token) => {
+        if (err) throw err;
+        res.json({ token, payload });
+      });
   }
   ////
 };
 
 exports.ForgotPassword = async (req, res) => {
-  //ยังไม่เสร็จ มันเอ๋อ ใช้ได้แค่ 1 ครั้ง
+  //ยังไม่เสร็จ มันเอ๋อ
   try {
     const data = req.body;
     var forgetpassword = await Users.findOne({ username: data.username });
     if (!forgetpassword) {
       return res.status(400).send("User not found!!");
     }
-    // res.status(200).json(forgetpassword);
-    if (data.secretCode === secretCode) {
+    if (data.secretCode === req.user.secretCode) {
       const salt = await bcrypt.genSalt(10);
-      forgetpassword.password = await bcrypt.hash(data.password, salt);
+      forgetpassword.password = await bcrypt.hash(data.newpassword, salt);
       await forgetpassword.save();
       res.status(200).send("Password Changed!!");
     } else {
