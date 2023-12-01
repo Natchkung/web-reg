@@ -89,7 +89,7 @@ export default {
             localStorage.setItem('username' , response.data.payload.user.username)
             localStorage.setItem('role' , response.data.payload.user.role)
             // location.replace('/home')
-            this.$router.replace({ path: "/home" })
+            this.$router.go({ path: "/home" })
             // this.$router.go()
             // this.$router.resolve('/home')
             
@@ -109,9 +109,9 @@ export default {
       this.showPassword = !this.showPassword;
     },
   },
-  created(){
-    localStorage.clear()
-  }
+  // created(){
+  //   localStorage.clear()
+  // }
 };
 </script>
 
