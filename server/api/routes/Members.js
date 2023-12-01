@@ -20,7 +20,7 @@ const {upload} = require("../Middleware/upload")
 
 
 
-//https://unknowkubbrother.net:5000/api/product
+//http://localhost:5000/api/product
 router.get('/members', auth, list_all_dbs)
 router.post('/members', auth, upload, create_a_db)
 router.delete('/members', auth, delete_all_dbs)
