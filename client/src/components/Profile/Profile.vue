@@ -3,7 +3,7 @@
         <div class="w-full h-[650px] flex flex-wrap lg:gap-7">
             <div class="w-[30%] bg-[#102e49] rounded-lg flex flex-col items-center">
                 <div class="w-[150px] h-[150px] bg-sky-50 rounded-full overflow-hidden mt-5">
-                    <img :src="`http://localhost/upload_image/${members.photo}`" :alt="members.photo" class="w-full h-full object-cover">
+                    <img :src="`https://unknowkubbrother.net/upload_image/${members.photo}`" :alt="members.photo" class="w-full h-full object-cover">
                 </div>
                 <div class="text-xl mt-3 flex flex-wrap gap-2">
                     <span>{{ members.fname }}</span><span>{{ members.lname }}</span>
@@ -137,7 +137,7 @@ export default {
             }else{
                 this.personalID = localStorage.getItem('username')
             }
-            axios.get(`http://localhost:3000/api/members/${this.personalID}`, {
+            axios.get(`https://unknowkubbrother.net:3000/api/members/${this.personalID}`, {
             headers: {
             'authtoken': localStorage.getItem('authtoken')
             },

@@ -34,7 +34,7 @@ export default {
     methods: {
     },
     created(){
-        axios.get('http://localhost:3000/api/announce')
+        axios.get('https://unknowkubbrother.net:3000/api/announce')
         .then((response) => {
           if (response) {
             this.announce = response.data

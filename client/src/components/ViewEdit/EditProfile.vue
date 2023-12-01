@@ -7,7 +7,7 @@
                 enctype="multipart/form-data">
                 <div class="flex justify-center items-center lg:ml-[300px] md:ml-[100px]">
                     <div class="w-[120px] h-[120px] overflow-hidden rounded-full">
-                        <img :src="`http://localhost/upload_image/${member.photo}`" class="w-full h-full object-cover"
+                        <img :src="`https://unknowkubbrother.net/upload_image/${member.photo}`" class="w-full h-full object-cover"
                             :alt="`${member.photo}`">
                     </div>
                     <div class="w-[70%] ml-10">
@@ -90,7 +90,7 @@
 <script>
 import axios from "axios";
 export default {
-    name: "Editpage",
+    name: "EDITPROFILE",
     props: {
         members: [],
     },
@@ -128,7 +128,7 @@ export default {
             }
 
             axios
-                .put(`http://localhost:3000/api/members/${this.beforepersonalID}`, formWithImageData, {
+                .put(`https://unknowkubbrother.net:3000/api/members/${this.beforepersonalID}`, formWithImageData, {
                     headers: {
                         'authtoken': localStorage.getItem('authtoken')
                     },

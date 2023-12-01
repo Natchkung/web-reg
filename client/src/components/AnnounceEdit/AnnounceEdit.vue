@@ -153,7 +153,7 @@ export default {
     },
     methods: {
         getAnnounce() {
-            axios.get('http://localhost:3000/api/announce')
+            axios.get('https://unknowkubbrother.net:3000/api/announce')
                 .then((response) => {
                     if (response) {
                         this.announce = response.data
@@ -166,7 +166,7 @@ export default {
                 })
         },
         createAnnounce() {
-            axios.post("http://localhost:3000/api/announce/", this.postannounce, {
+            axios.post("https://unknowkubbrother.net:3000/api/announce/", this.postannounce, {
                 headers: {
                   'authtoken': localStorage.getItem('authtoken')
                 },
@@ -189,7 +189,7 @@ export default {
         DeleteAnnounce(e){
             const agree = confirm("คุณต้องการลบข้อมูลหรือไม่");
             if (agree) {
-                axios.delete(`http://localhost:3000/api/announce/${e._id}`, {
+                axios.delete(`https://unknowkubbrother.net:3000/api/announce/${e._id}`, {
                     headers: {
                     'authtoken': localStorage.getItem('authtoken')
                     },
@@ -208,7 +208,7 @@ export default {
         },
         Showeditannounce(event){
             this.showeditannounce = true
-            axios.get(`http://localhost:3000/api/announce/${event}`, {
+            axios.get(`https://unknowkubbrother.net:3000/api/announce/${event}`, {
                     headers: {
                     'authtoken': localStorage.getItem('authtoken')
                     },
@@ -227,7 +227,7 @@ export default {
         Editannounce(e){
             const agree = confirm("คุณต้องการแก้ไขข้อมูลหรือไม่");
             if (agree) {
-                axios.put(`http://localhost:3000/api/announce/${e._id}`, e,{
+                axios.put(`https://unknowkubbrother.net:3000/api/announce/${e._id}`, e,{
                     headers: {
                     'authtoken': localStorage.getItem('authtoken')
                     },

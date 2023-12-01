@@ -49,7 +49,7 @@ export default {
           loop++
           if (loop === 11) {
             axios
-              .post("http://localhost:3000/api/members/", formWithImageData, {
+              .post("https://unknowkubbrother.net:3000/api/members/", formWithImageData, {
                 headers: {
                   'authtoken': localStorage.getItem('authtoken')
                 },

@@ -79,7 +79,7 @@ export default {
         this.LoginData.username &&
         this.LoginData.password
       ) {
-        const api = "http://localhost:3000/api/login"
+        const api = "https://unknowkubbrother.net:3000/api/login"
         await axios.post(api, this.LoginData).then((response)=>{
           if (response){
             alert("Login Success");

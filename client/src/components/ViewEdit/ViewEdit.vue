@@ -31,7 +31,7 @@
             <Column field="PULmin" header="PULmin" sortable class="text-center" headerStyle="width: 70px"></Column>
             <Column header="รูปภาพ" class="text-center" headerStyle="width: 90px">
               <template #body="slotProps">
-                <img :src="`http://localhost/upload_image/${slotProps.node.data.photo}`" :alt="slotProps.node.data.photo"
+                <img :src="`https://unknowkubbrother.net/upload_image/${slotProps.node.data.photo}`" :alt="slotProps.node.data.photo"
                   class="w-6rem h-[3.3rem] shadow-2 border-round rounded-lg object-cover" />
               </template>
             </Column>
@@ -61,7 +61,7 @@
     </div>
     <!-- @showEdit -->
     <div v-if="PageEdit">
-      <EDITPAGE :members="member" />
+      <EDITPROFILE :members="member" />
     </div>
 
   </div>
@@ -77,12 +77,12 @@
 </template>
 
 <script>
-import EDITPAGE from './EditPage.vue';
+import EDITPROFILE from './EditProfile.vue'
 import axios from 'axios';
 export default {
   name: 'ViewEdit',
   components: {
-    EDITPAGE,
+    EDITPROFILE,
   },
   props: {
     auth: Boolean,
@@ -110,7 +110,7 @@ export default {
     refresh() {
       this.member = []
       this.PageEdit = false
-      axios.get("http://localhost:3000/api/members/", {
+      axios.get("https://unknowkubbrother.net:3000/api/members/", {
         headers: {
           'authtoken': localStorage.getItem('authtoken')
         },
@@ -137,7 +137,7 @@ export default {
     deletedata(event) {
       const agree = confirm("คุณต้องการลบข้อมูลหรือไม่");
       if (agree) {
-        axios.delete(`http://localhost:3000/api/members/${event.personalID}`, {
+        axios.delete(`https://unknowkubbrother.net:3000/api/members/${event.personalID}`, {
           headers: {
             'authtoken': localStorage.getItem('authtoken')
           },
@@ -156,7 +156,7 @@ export default {
       }
     },
     editdata(event) {
-      axios.get(`http://localhost:3000/api/members/${event.personalID}`, {
+      axios.get(`https://unknowkubbrother.net:3000/api/members/${event.personalID}`, {
         headers: {
           'authtoken': localStorage.getItem('authtoken')
         },
@@ -182,7 +182,7 @@ export default {
     },
     ExportToExcel() {
       // axios
-      //   .get("http://localhost:3000/api/members/", {
+      //   .get("https://unknowkubbrother.net:3000/api/members/", {
       //     responseType: "blob",
       //     headers: {
       //       'authtoken': localStorage.getItem('authtoken')
