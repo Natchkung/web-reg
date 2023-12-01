@@ -57,13 +57,15 @@ export default {
               .then((response) => {
                 if (response.data == "Token Invalid" || response.data == 'No token!') {
                   alert("หมดเวลาการใช้งานกรุณา Login ใหม่")
-                  location.replace('/login')
+                  // location.replace('/login')
+                  this.$router.replace({ path: '/login' })
                 }
                 else if (response.data == "Already have user data!") {
                   alert("มีข้อมูลอยู่ในระบบแล้ว!!")
                 } else {
                   alert("บันทึกข้อมูลเสร็จสิ้น")
-                  location.reload();
+                  // location.reload();
+                  this.$router.go()
                 }
               }).catch(function (error) {
                 if (error.response) {

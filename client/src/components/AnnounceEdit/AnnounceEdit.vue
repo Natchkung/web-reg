@@ -175,7 +175,8 @@ export default {
                        if(response.data)
                        {
                         alert("สร้างประกาศสำเร็จ")
-                        location.reload()
+                        // location.reload()
+                        this.$router.go()
                        }
 
                 }).catch(function (error) {
@@ -198,7 +199,8 @@ export default {
                         if(response.data)
                         {
                             alert("ระบบได้ทำการลบประกาศแล้ว")
-                            location.reload()
+                            // location.reload()
+                            this.$router.go()
                         }
 
                     }).catch(function (error) {
@@ -236,7 +238,8 @@ export default {
                         if(response.data)
                         {
                             alert("ระบบได้ทำการแก้ไขข้อมูลประกาศแล้ว")
-                            location.reload()    
+                            // location.reload() 
+                            this.$router.go()   
                         }
 
                     }).catch(function (error) {

@@ -81,15 +81,17 @@ export default {
       ) {
         const api = "https://unknowkubbrother.net:3000/api/login"
         await axios.post(api, this.LoginData).then((response)=>{
-          if (response){
+           if (response){
             alert("Login Success");
             // this.$router.push({path: '/home'})
             localStorage.setItem("authtoken", response.data.token)
             localStorage.setItem('checkLogin' , true)
             localStorage.setItem('username' , response.data.payload.user.username)
             localStorage.setItem('role' , response.data.payload.user.role)
-            // location.push('/home')
-            location.replace('/home')
+            // location.replace('/home')
+            this.$router.replace({ path: "/home" })
+            // this.$router.go()
+            // this.$router.resolve('/home')
             
           }
         }

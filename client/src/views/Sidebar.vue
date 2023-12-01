@@ -75,8 +75,10 @@ export default {
             this.$emit('clickHambuger');
         },
         refreshViewEdit(){
-            if(location.pathname == '/registrar/viewedit' || location.pathname == '/registrar/viewEdit' ){
-                location.replace('/viewedit')
+            if(location.pathname == '/viewedit' || location.pathname == '/viewEdit' ){
+                // location.replace('/viewedit')
+                // this.$router.replace({ path: '/viewedit' })
+                this.$router.go()
             }
         }
     },
