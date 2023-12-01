@@ -88,8 +88,8 @@ export default {
             localStorage.setItem('checkLogin' , true)
             localStorage.setItem('username' , response.data.payload.user.username)
             localStorage.setItem('role' , response.data.payload.user.role)
-            // location.replace('/home')
-            this.$router.replace({ path: "/home" })
+            location.replace('/home')
+            // this.$router.replace({ path: "/home" })
             // this.$router.go()
             // this.$router.resolve('/home')
             
